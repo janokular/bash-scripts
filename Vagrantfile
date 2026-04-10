@@ -3,5 +3,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "debian" do |debian|
     debian.vm.hostname = "debian"
+
+    debian.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y geoip-bin
+    SHELL
   end
 end
